@@ -1,40 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta charset="utf-8"/>
-        <title>Prime Numbers</title>
-        <link rel="stylesheet" href="style.css"/>
+        <title>count.tools</title>
+        <meta charset="utf8"/>
+        <meta name="viewport" content="width=device-width">
+        <link href="css/style.css" rel="stylesheet"/>
     </head>
 
-    <div class="container">
-        <div class="header">
-            <img height=40px src="images/haskell.png" />
-            <h1><i><a style="color:inherit; text-decoration: none;" href="index.html">count.tools</a></i></h1>
-        </div>
-        
-        <div class="main">
-            <div class="sidebar">
-                <b class="sidebar-header">Math tools:</b>
-                <ul>
-                <li class="sidebar-link"><a href="prime.html">Primality check</a></li>
-                </ul>
-                <b class="sidebar-header">Programming tools:</b>
-                <ul>
-                <li class="sidebar-link"><a href="rand.html">Random numbers</a></li>
-                </ul>
-                <b class="sidebar-header"> Resources: </b>
-                <ul>
-                <li class="sidebar-link"><a href="links.html">Links</a></li>
-                </ul>
-                <b class="sidebar-header">Miscellaneous:</b>
-                <ul>
-                <li class="sidebar-link"><a href="about.html">About</a></li>
-                </ul>
+    <nav class="navbar">
+        <img height=30px width=30px style="padding-right: 10px" src="assets/sigma.png"/>
+        <h1>count.tools</h1>
+    </nav>
 
+    <body>
+        <div id="grid-container">
+            <div id="sidebar-container" class="grid-item">
+                <div id="sidebar">
+                    <div class="sidebar-top">
+                        <u style="padding-right: 56px;">Navigation</u>
+                        <button id="hide-button" onclick="hide_sidebar()"><<<<</button>
+                    </div>
+                    <text class="sidebar-header">Math tools:</text>
+                    <ul class="sidebar-list">
+                        <li><a href="prime.html">Primality test</a></li>
+                        <li><a href="prime.html">Wall of pi</a></li>
+                    </ul>
+                    <text class="sidebar-header">CS tools:</text>
+                    <ul class="sidebar-list">
+                        <li><a href="prime.html">Kattis</a></li>
+                    </ul>
+                    <text class="sidebar-header">Resources:</text>
+                    <ul class="sidebar-list">
+                        <li><a href="prime.html">Links</a></li>
+                    </ul>
+                    <text class="sidebar-header">Miscellaneous:</text>
+                    <ul class="sidebar-list">
+                        <li><a href="prime.html">About</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="content">
-                Welcome to count.tools!!!
+            <div class="content grid-item">
+                <button id="show-button" onclick="show_sidebar()">>>>></button>
+                <p>Welcome to count.tools!!!</p>
             </div>
         </div>
-    </div>
-</html> 
+        <script src="js/display.js"></script>
+    </body>
+</html>

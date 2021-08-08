@@ -1,0 +1,101 @@
+html
+{
+	font-family:sans-serif;
+}
+
+.navbar
+{
+	height: 30px;
+	padding: 9px;
+
+	display: flex;
+	flex-direction: row;
+
+	align-items: center;
+
+	background-color: lightblue;
+}
+
+#sidebar-container
+{
+	padding:5px;
+	grid-row: 2;
+	grid-column: 1;
+	border-right: 1px dotted black;
+}
+
+.sidebar
+{
+	display: flex;	
+	flex-direction: column;
+	flex: 1 1 auto;
+}
+
+.sidebar-top
+{
+	display: flex;
+	padding-bottom: 20px;
+}
+
+button
+{
+	font-size: 8pt;
+	border:none;
+	background-color: lightblue;
+	height:20px;
+}
+
+#show-button
+{
+	position:absolute;
+	left:0px;
+	top: 71px;
+	visibility: hidden;
+}
+
+button:hover
+{
+	background-color:royalblue;
+}
+
+.sidebar-header
+{
+	font-style: italic;
+}
+
+.content
+{
+	grid-row: 2;
+	grid-column: 2/4;
+
+	display: flex;
+	justify-content: center;
+
+}
+
+#grid-container
+{
+	height:100%;
+
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 200px auto auto;
+	grid-template-rows: max-content;
+}
+
+.grid-item
+{
+}
+
+.footer
+{
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+
+	padding: 2px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
