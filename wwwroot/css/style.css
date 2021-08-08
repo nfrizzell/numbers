@@ -1,11 +1,13 @@
 html
 {
 	font-family:sans-serif;
+	max-width: 100%;
+	overflow-x: hidden;
 }
 
 .navbar
 {
-	height: 30px;
+	height: 32px;
 	padding: 9px;
 
 	display: flex;
@@ -13,15 +15,42 @@ html
 
 	align-items: center;
 
-	background-color: lightblue;
+	background-image: linear-gradient(to left, rgba(140,140,255,.2), rgba(140,140,255,.8));
+}
+
+.navbar-title, .navbar-title:hover, .navbar-title:visited, .navbar-title:active
+{
+	text-decoration: none; 
+	color:black;
 }
 
 #sidebar-container
 {
-	padding:5px;
 	grid-row: 2;
 	grid-column: 1;
-	border-right: 1px dotted black;
+	background-color: lavender;
+}
+
+.menu-button
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	margin-bottom: 2px;
+	background-color:blue;
+}
+
+.menu-button:hover
+{
+	background-color:slateblue;
+	cursor: pointer;
+}
+
+.menu-line
+{
+	width: 30px;
+	height: 5px;
+	background-color:white;
+	margin: 6px 0;
 }
 
 .sidebar
@@ -37,45 +66,22 @@ html
 	padding-bottom: 20px;
 }
 
-button
-{
-	font-size: 8pt;
-	border:none;
-	background-color: lightblue;
-	height:20px;
-}
-
-#show-button
-{
-	position:absolute;
-	left:0px;
-	top: 71px;
-	visibility: hidden;
-}
-
-button:hover
-{
-	background-color:royalblue;
-}
-
 .sidebar-header
 {
-	font-style: italic;
+	width:999px;
+	padding:5px;
 }
 
 .content
 {
 	grid-row: 2;
 	grid-column: 2/4;
-
-	display: flex;
-	justify-content: center;
-
 }
 
 #grid-container
 {
 	height:100%;
+	max-width: 100%;
 
 	display: grid;
 	grid-gap: 10px;
@@ -98,4 +104,9 @@ button:hover
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.block
+{
+	padding-left: 20px;
 }

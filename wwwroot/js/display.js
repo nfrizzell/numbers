@@ -1,21 +1,30 @@
-function hide_sidebar()
+function toggleSidebar()
 {
 	var grid = document.getElementById("grid-container");
 	var sidebar = document.getElementById("sidebar-container");
-	var show_button = document.getElementById("show-button");
 
-	grid.style.gridTemplateColumns = "0px auto auto";
-	sidebar.style.visibility = "hidden";
-	show_button.style.visibility = "visible";
+	if (sidebar.style.visibility === "hidden")
+	{
+		sidebar.style.visibility = "visible";
+		grid.style.gridTemplateColumns = "200px auto auto";
+	}
+
+	else
+	{
+		sidebar.style.visibility = "hidden";
+		grid.style.gridTemplateColumns = "0px auto auto";
+	}
 }
 
-function show_sidebar()
-{
-	var grid = document.getElementById("grid-container");
-	var sidebar = document.getElementById("sidebar-container");
-	var show_button = document.getElementById("show-button");
+var width = window.innerWidth
+|| document.documentElement.clientWidth
+|| document.body.clientWidth;
 
-	grid.style.gridTemplateColumns = "200px auto auto";
-	sidebar.style.visibility = "visible";
-	show_button.style.visibility = "hidden";
+//var height = window.innerHeight
+//|| document.documentElement.clientHeight
+//|| document.body.clientHeight;
+
+if (width < 768)
+{
+	toggleSidebar();
 }
