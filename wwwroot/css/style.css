@@ -108,3 +108,37 @@ html
 {
 	padding-left: 20px;
 }
+
+.form-block
+{
+	margin-top: 20px;
+	max-width: 400px;
+	padding:5px;
+	border: 1px solid black;
+	border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+}
+
+.table-form
+{
+	display: table;
+}
+
+label, input
+{
+	display: table-cell;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+label
+{
+	padding-right: 10px;
+}
+
+.small-number-input
+{
+	width: 100px;
+}
