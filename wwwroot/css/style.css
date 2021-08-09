@@ -7,15 +7,17 @@ html
 
 .navbar
 {
-	height: 32px;
+	height: 35px;
 	padding: 9px;
+	padding-left: 5px;
 
 	display: flex;
 	flex-direction: row;
 
 	align-items: center;
 
-	background-image: linear-gradient(to left, rgba(140,140,255,.2), rgba(140,140,255,.8));
+	background-image: linear-gradient(to left, rgba(140,140,255,0), rgba(140,140,255,.8));
+	max-width: 1100px;
 }
 
 .navbar-title, .navbar-title:hover, .navbar-title:visited, .navbar-title:active
@@ -29,17 +31,19 @@ html
 	grid-row: 2;
 	grid-column: 1;
 	background-color: lavender;
+	border: 1px solid mediumslateblue;
+	border-radius: 5px;
 }
 
-.menu-button
+#menu-button
 {
 	padding-right: 5px;
 	padding-left: 5px;
-	margin-bottom: 2px;
-	background-color:blue;
+	border: solid 1px rgba(0, 0, 0, 0);
+	border-radius: 3px;
 }
 
-.menu-button:hover
+#menu-button:hover
 {
 	background-color:slateblue;
 	cursor: pointer;
@@ -47,9 +51,9 @@ html
 
 .menu-line
 {
-	width: 30px;
-	height: 5px;
-	background-color:white;
+	width: 20px;
+	height: 2px;
+	background-color:black;
 	margin: 6px 0;
 }
 
@@ -63,7 +67,8 @@ html
 .sidebar-top
 {
 	display: flex;
-	padding-bottom: 20px;
+	padding-bottom: 10px;
+	align-items: center;
 }
 
 .sidebar-header
@@ -75,7 +80,13 @@ html
 .content
 {
 	grid-row: 2;
-	grid-column: 2/4;
+	grid-column: 2;
+}
+
+.descriptor
+{
+	grid-row: 2;
+	grid-column: 3;
 }
 
 #grid-container
@@ -91,19 +102,6 @@ html
 
 .grid-item
 {
-}
-
-.footer
-{
-	position: fixed;
-	bottom: 0px;
-	left: 0px;
-
-	padding: 2px;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }
 
 .block
