@@ -51,16 +51,17 @@
                     <form class="table-form">
                         <div style="display: table-row;">
                             <label for = "number">Enter integer: </label>
-                            <input class="small-number-input" name="number"></input>
+                            <input id = "number-field" class="small-number-input" name="number"></input>
                         </div>
                         <div style="display: table-row;">
                             <label for = "result">Result:</label>
-                            <input class="small-number-input" disabled="disabled" name="result"></input>
+                            <input id = "result-field" class="small-number-input" readonly="readonly" name="result"></input>
                         </div>
                     </form>
-                    <button>Calculate</button>
+                    <button onclick="retrieveFactorial()">Calculate</button>
                 </div>
             </div>
         <script src="js/display.js"></script>
+        <script src="js/requests.js"></script>
     </body>
 </html>

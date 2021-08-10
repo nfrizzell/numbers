@@ -1,7 +1,7 @@
 function toggleSidebar()
 {
-	var grid = document.getElementById("grid-container");
-	var sidebar = document.getElementById("sidebar-container");
+	const grid = document.getElementById("grid-container");
+	const sidebar = document.getElementById("sidebar-container");
 
 	if (sidebar.style.visibility === "hidden")
 	{
@@ -16,11 +16,11 @@ function toggleSidebar()
 	}
 }
 
-var width = window.innerWidth
+let width = window.innerWidth
 || document.documentElement.clientWidth
 || document.body.clientWidth;
 
-//var height = window.innerHeight
+//let height = window.innerHeight
 //|| document.documentElement.clientHeight
 //|| document.body.clientHeight;
 
