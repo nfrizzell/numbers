@@ -1,15 +1,11 @@
-function HTTPGetRequest(value)
+function HTTPGetRequest(value, controller)
 {
-	const url = "http://localhost:5000";
+	const url = "https://localhost:5001/" + controller + "/" + value;
 	const http = new XMLHttpRequest();
 
-	http.open("GET", url);
+	http.open("GET", url, false);
 	http.send();
-
-	http.onreadystatechange=(e)=>
-	{
-		console.log(http.responseText);
-	}
+	return http.responseText;
 }
 
 function retrieveFactorial()
@@ -21,7 +17,8 @@ function retrieveFactorial()
 	const input = numberField.value;
 	if (input != null && /^\d+$/.test(input) && 0 <= parseInt(input) <= max)
 	{
-		response = HTTPGetRequest(input);
+		let response = HTTPGetRequest(input, "Factorial");
+		resultField.value = response;
 	}
 
 	else
@@ -39,7 +36,8 @@ function retrievePrime()
 	const input = numberField.value;
 	if (input != null && /^\d+$/.test(input) && 0 <= parseInt(input) <= max)
 	{
-		response = HTTPGetRequest(input);
+		let response = HTTPGetRequest(input, "Prime");
+		resultField.value = response;
 	}
 
 	else

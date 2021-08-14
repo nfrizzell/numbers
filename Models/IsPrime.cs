@@ -1,11 +1,11 @@
 namespace numbers.Models
 {
-    public class Number
+    public class IsPrime 
     {
         private int _num;
-        public bool isPrime { get; set; }
+        public bool prime { get; set; }
 
-        public Number(int num)
+        public IsPrime(int num)
         {
             _num = num;
         }

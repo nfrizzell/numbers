@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,8 +11,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+
 using Microsoft.AspNetCore.Authentication.Certificate;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore;
+
+using numbers.Models;
 
 namespace numbers
 {
@@ -20,6 +26,7 @@ namespace numbers
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -45,22 +52,23 @@ namespace numbers
                 options.AllowedCertificateTypes = CertificateTypes.All;
             });
 
-            services.AddControllers();
+            services.Add(
+                new ServiceDescriptor(typeof(NumbersDBContext),
+                new NumbersDBContext(Configuration))
+            );
+            
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.Use(async (context, next) =>
-            {
-                Console.WriteLine($"[{context.Connection.RemoteIpAddress}] | {context.Request.Path}");
-                await next.Invoke();
-            });
-
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
             }
+
+            app.UseHsts();
 
             app.UseHttpsRedirection();
 
@@ -72,7 +80,9 @@ namespace numbers
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name:"default",
+                    pattern: "{controller=Prime}/{action=Index}/{id?}");
             });
         }
     }
