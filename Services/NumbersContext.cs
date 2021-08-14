@@ -22,7 +22,7 @@ namespace numbers
 			dbConnection.Open();
 		}
 
-		public bool ValidateInput(string input, int maxLen)
+		private bool ValidateInput(string input, int maxLen)
 		{
 			if (input.Length > maxLen || input.Length == 0)
 			{

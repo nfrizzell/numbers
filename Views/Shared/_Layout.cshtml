@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Free Online Math and Computer Science Tools</title>
+        <meta name="description" content="Your number one online resource for free math and computer science calculators and tools, free with no ads."/>
+        <meta charset="utf8"/>
+        <meta name="viewport" content="width=device-width">
+        <link href="~/css/style.css" rel="stylesheet"/>
+		@RenderSection("css", false)
+    </head>
+
+    <nav class="navbar">
+        <div id="menu-button" onclick="toggleSidebar()">
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+        </div>
+        <img height=30px width=30px style="padding-right: 7px; padding-left: 15px;" src="~/assets/sigma.png"/>
+        <h1 style="padding-bottom: 3px;"><a class="navbar-title" href="index.html">count.tools</a></h1>
+    </nav>
+
+    <body>
+        <div id="grid-container">
+            <div id="sidebar-container" class="grid-item">
+                <div id="sidebar">
+                    <div class="sidebar-top">
+                        <text style="padding: 5px; padding-left: 5px; padding-right: 108px; background-color:rgba(140,140,255,.5) ;">Navigation</text>
+                    </div>
+                    <text class="sidebar-header">Math tools:</text>
+                    <ul class="sidebar-list">
+                        <li><a href="Factorial">Factorial</a></li>
+                        <li><a href="Prime">Primality test</a></li>
+                    </ul>
+                    <text class="sidebar-header">CS tools:</text>
+                    <ul class="sidebar-list">
+                        <li><a href="Regex">Regex to English</a></li>
+                        <li><a href="Kattis">Kattis</a></li>
+                    </ul>
+                    <text class="sidebar-header">Resources:</text>
+                    <ul class="sidebar-list">
+                        <li><a href="Links">Links</a></li>
+                    </ul>
+                    <text class="sidebar-header">Miscellaneous:</text>
+                    <ul class="sidebar-list">
+                        <li><a href="About">About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content grid-item">
+				@RenderBody()
+			</div>
+        </div>
+        <script src="~/js/display.js"></script>
+    </body>
+</html>

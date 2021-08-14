@@ -72,6 +72,9 @@ namespace numbers
 
             app.UseHttpsRedirection();
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseCors(MyAllowSpecificOrigins);
@@ -81,8 +84,18 @@ namespace numbers
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name:"default",
-                    pattern: "{controller=Prime}/{action=Index}/{id?}");
+                    name: "default",
+                    pattern: "{controller=Static}/{action=Index}");
+
+                endpoints.MapControllerRoute(
+                    name: "test",
+                    pattern: "{action}",
+                    defaults: new {controller = "Static"});
+
+                endpoints.MapControllerRoute(
+                    name: "test",
+                    pattern: "{action}",
+                    defaults: new {controller = "Forms"});
             });
         }
     }
