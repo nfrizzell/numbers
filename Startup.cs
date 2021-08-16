@@ -56,6 +56,8 @@ namespace numbers
                 new ServiceDescriptor(typeof(NumbersDBContext),
                 new NumbersDBContext(Configuration))
             );
+
+            services.AddRouting(options => options.LowercaseUrls = true);
             
             services.AddControllersWithViews();
         }
@@ -89,13 +91,13 @@ namespace numbers
 
                 endpoints.MapControllerRoute(
                     name: "test",
-                    pattern: "{action}",
-                    defaults: new {controller = "Static"});
+                    pattern: "util/{action}",
+                    defaults: new {controller = "Forms"});
 
                 endpoints.MapControllerRoute(
                     name: "test",
                     pattern: "{action}",
-                    defaults: new {controller = "Forms"});
+                    defaults: new {controller = "Static"});
             });
         }
     }

@@ -12,18 +12,17 @@ namespace numbers.Controllers
             this.dbContext = context;
         }
 
-        public IActionResult Prime()
+        public IActionResult Prime(string input="")
         {
-            return View();
+            return View(model:dbContext.CheckNumberPrime(input));
         }
 
-        [HttpPost]
-        public IActionResult Prime(string input)
+        public IActionResult Factorial(string input="")
         {
-            return View(dbContext.CheckNumberPrime(input));
+            return View(model:dbContext.RetrieveFactorial(input));
         }
 
-        public IActionResult Factorial()
+        public IActionResult Regex()
         {
             return View();
         }

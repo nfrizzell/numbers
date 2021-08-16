@@ -22,9 +22,9 @@ namespace numbers
 			dbConnection.Open();
 		}
 
-		private bool ValidateInput(string input, int maxLen)
+		private bool ValidateInput(string input, int max)
 		{
-			if (input.Length > maxLen || input.Length == 0)
+			if (String.IsNullOrEmpty(input))
 			{
 				return false;
 			}
@@ -38,14 +38,24 @@ namespace numbers
 				}
 			}
 
+			if (input.Length == 0 || Int32.Parse(input) > max)
+			{
+				return false;
+			}
+
 			return true;
 		}
 
-		public string CheckNumberPrime(string input)
+		public FormResult CheckNumberPrime(string input)
 		{
-			if (!ValidateInput(input, 100))
+			if (input.Length == 0)
 			{
-				return "Invalid input";
+				return new FormResult("", "");
+			}
+
+			if (!ValidateInput(input, 1000000))
+			{
+				return new FormResult("Invalid input", "");
 			}
 
 			string sql = "SELECT EXISTS (SELECT * FROM prime WHERE VALUE=@integer);";
@@ -56,20 +66,60 @@ namespace numbers
 			{
 				while (reader.Read())
 				{
-					bool value = (Int64)reader.GetValue(0) != 0;
+					bool value = (Int64)reader.GetInt64(0) != 0;
 					if (value)
 					{
-						return "Number is prime";
+						return new FormResult(input, "Prime");
 					}
 
 					else
 					{
-						return "Number is not prime";
+						return new FormResult(input, "Not prime");
 					}
 				}
 			}
 
-			return "Error";
+			return new FormResult("Error", "");
+		}
+
+		public FormResult RetrieveFactorial(string input)
+		{
+			if (input.Length == 0)
+			{
+				return new FormResult("", "");
+			}
+
+			if (!ValidateInput(input, 10000))
+			{
+				return new FormResult("Invalid input", "");
+			}
+
+			string sql;
+
+			int number = int.Parse(input);
+			if (number < 3000)
+			{
+				sql = "SELECT value FROM factorial WHERE input=@integer;";
+			}
+			else
+			{
+				sql = "SELECT value FROM big_factorial WHERE input=@integer;";
+			}
+
+			MySqlCommand command = new MySqlCommand(sql, dbConnection);
+			command.Parameters.AddWithValue("@integer", input);
+
+			using (MySqlDataReader reader = command.ExecuteReader())
+			{
+				while (reader.Read())
+				{
+					string value = reader.GetString(0);
+					Console.WriteLine(value);
+					return new FormResult(input, value);
+				}
+			}
+
+			return new FormResult("Error", "");
 		}
 	}
 }
