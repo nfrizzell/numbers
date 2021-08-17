@@ -24,11 +24,6 @@ namespace numbers
 
 		private bool ValidateInput(string input, int max)
 		{
-			if (String.IsNullOrEmpty(input))
-			{
-				return false;
-			}
-
 			// Check for non-digit characters
 			foreach (char c in input)	
 			{
@@ -48,17 +43,18 @@ namespace numbers
 
 		public FormResult CheckNumberPrime(string input)
 		{
-			if (input.Length == 0)
+			if (String.IsNullOrEmpty(input))
 			{
 				return new FormResult("", "");
 			}
 
 			if (!ValidateInput(input, 1000000))
 			{
+
 				return new FormResult("Invalid input", "");
 			}
 
-			string sql = "SELECT EXISTS (SELECT * FROM prime WHERE VALUE=@integer);";
+			string sql = "SELECT EXISTS (SELECT * FROM prime WHERE prime_num=@integer);";
 			MySqlCommand command = new MySqlCommand(sql, dbConnection);
 			command.Parameters.AddWithValue("@integer", input);
 
@@ -84,7 +80,7 @@ namespace numbers
 
 		public FormResult RetrieveFactorial(string input)
 		{
-			if (input.Length == 0)
+			if (String.IsNullOrEmpty(input))
 			{
 				return new FormResult("", "");
 			}
@@ -114,7 +110,6 @@ namespace numbers
 				while (reader.Read())
 				{
 					string value = reader.GetString(0);
-					Console.WriteLine(value);
 					return new FormResult(input, value);
 				}
 			}

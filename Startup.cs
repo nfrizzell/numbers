@@ -30,28 +30,10 @@ namespace numbers
         }
 
         public IConfiguration Configuration { get; }
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-                    });
-            });
-            
-            services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
-            .AddCertificate(options =>
-            {
-                options.AllowedCertificateTypes = CertificateTypes.All;
-            });
-
             services.Add(
                 new ServiceDescriptor(typeof(NumbersDBContext),
                 new NumbersDBContext(Configuration))
@@ -67,7 +49,7 @@ namespace numbers
         {
             if (env.IsDevelopment())
             {
-                //app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();
             }
 
             app.UseHsts();
@@ -78,8 +60,6 @@ namespace numbers
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 
