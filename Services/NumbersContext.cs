@@ -12,14 +12,11 @@ namespace numbers
 	public class NumbersDBContext
 	{
 		private readonly string dbConnString;
-		public readonly MySqlConnection dbConnection;
 
 		public NumbersDBContext(IConfiguration configuration)
 		{
 			this.dbConnString = configuration["DBConnectionString"];
 
-			this.dbConnection = new MySqlConnection(dbConnString);
-			dbConnection.Open();
 		}
 
 		private bool ValidateInput(string input, int max)
@@ -55,22 +52,28 @@ namespace numbers
 			}
 
 			string sql = "SELECT EXISTS (SELECT * FROM prime WHERE prime_num=@integer);";
-			MySqlCommand command = new MySqlCommand(sql, dbConnection);
-			command.Parameters.AddWithValue("@integer", input);
+			
 
-			using (MySqlDataReader reader = command.ExecuteReader())
+			using (MySqlConnection dbConnection = new MySqlConnection(dbConnString))
 			{
-				while (reader.Read())
-				{
-					bool value = (Int64)reader.GetInt64(0) != 0;
-					if (value)
-					{
-						return new FormResult(input, "Prime");
-					}
+				dbConnection.Open();
 
-					else
+				MySqlCommand command = new MySqlCommand(sql, dbConnection);
+				command.Parameters.AddWithValue("@integer", input);
+				using (MySqlDataReader reader = command.ExecuteReader())
+				{
+					while (reader.Read())
 					{
-						return new FormResult(input, "Not prime");
+						bool value = (Int64)reader.GetInt64(0) != 0;
+						if (value)
+						{
+							return new FormResult(input, "Prime");
+						}
+
+						else
+						{
+							return new FormResult(input, "Not prime");
+						}
 					}
 				}
 			}
@@ -102,15 +105,20 @@ namespace numbers
 				sql = "SELECT value FROM big_factorial WHERE input=@integer;";
 			}
 
-			MySqlCommand command = new MySqlCommand(sql, dbConnection);
-			command.Parameters.AddWithValue("@integer", input);
-
-			using (MySqlDataReader reader = command.ExecuteReader())
+			using (MySqlConnection dbConnection = new MySqlConnection(dbConnString))
 			{
-				while (reader.Read())
+				dbConnection.Open();
+
+				MySqlCommand command = new MySqlCommand(sql, dbConnection);
+				command.Parameters.AddWithValue("@integer", input);
+
+				using (MySqlDataReader reader = command.ExecuteReader())
 				{
-					string value = reader.GetString(0);
-					return new FormResult(input, value);
+					while (reader.Read())
+					{
+						string value = reader.GetString(0);
+						return new FormResult(input, value);
+					}
 				}
 			}
 
