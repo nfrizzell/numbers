@@ -1,6 +1,33 @@
 <div class="content grid-item">
-    <h3 style="margin:0; "><u>Regex to English</u></h3>
-    <p>
-        Coming soon...
-    </p>
+    <div class="multiple-forms">
+        <h3 style="margin:0; "><u>Regex to English</u></h3>
+        <div class="form-block" style="background-color:#e5d5f5; border-color:#c4b4c4;">
+            <b>Translate a Regex expression to English</b>
+            <form class="table-form">
+                <div style="display: table-row;">
+                    <label for = "regex-input">Expression: </label>
+                    <input id="regex-input" class="small-number-input" name="input" placeholder="Enter expression here">
+                </div>
+                <div>
+                    <input type="submit" value="Translate"/>
+                </div>
+            </form>
+        </div>
+        <div class="form-block" style="background-color:#e5d5f5; border-color:#c4b4c4;">
+            <b>Options</b>
+            <form>
+                <div style="display: table-row;">
+                    <label for="extended-check">Extended:</label>
+                    <input class="packed-check-input" id="extended-radio" type="checkbox">
+                    <label for="xtended-check">Perl:</label>
+                    <input class="packed-check-input" id="xtended-radio" type="checkbox">
+                </div>
+            </form>
+        </div>
+        <div class="form-block" style="background-color:#e5d5f5; border-color:#c4b4c4;">
+            <b>Result</b>
+            <textarea style="height: 250px; resize:none" data-role="none" readonly="readonly"></textarea>
+        </div>
+    </div>
+    <script src="~/js/regex.js"></script>
 </div>

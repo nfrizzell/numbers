@@ -148,7 +148,7 @@ html
 
 .form-block
 {
-	margin-top: 20px;
+	margin-top: 10px;
 	max-width: 400px;
 	padding:5px;
 	border: 1px solid black;
@@ -156,6 +156,7 @@ html
 	display: flex;
 	flex-direction: column;
 	row-gap: 10px;
+	column-gap: 10px;
 }
 
 .table-form
@@ -177,5 +178,10 @@ label
 
 .small-number-input
 {
-	width: 200px;
+	width: 250px;
+}
+
+.packed-check-input
+{
+	margin-right: 25px;
 }
