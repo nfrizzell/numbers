@@ -35,10 +35,7 @@ namespace numbers
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Add(
-                new ServiceDescriptor(typeof(NumbersDBContext),
-                new NumbersDBContext(Configuration))
-            );
+            services.AddScoped<NumbersService, NumbersOnDemand>();
 
             services.AddRouting(options => options.LowercaseUrls = true);
             
@@ -81,7 +78,7 @@ namespace numbers
                     defaults: new {controller = "Forms"});
 
                 endpoints.MapControllerRoute(
-                    name: "test",
+                    name: "test2",
                     pattern: "{action}",
                     defaults: new {controller = "Static"});
             });

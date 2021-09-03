@@ -5,24 +5,45 @@ namespace numbers.Controllers
 {
     public class FormsController : Controller
     {
-        private readonly NumbersDBContext dbContext;
+        private readonly NumbersService numbersService;
+        private const string FACT_PLACEHOLDER = "(n <= 10000)";
+        private const string PRIME_PLACEHOLDER = "(e.g. 2147483647)";
 
-        public FormsController(NumbersDBContext context)
+        public FormsController(NumbersService numbersService)
         {
-            this.dbContext = context;
+            this.numbersService = numbersService;
         }
 
-        public IActionResult Prime(string input="")
+        public IActionResult Prime(string input)
         {
-            return View(model:dbContext.CheckNumberPrime(input));
+            string previous = PRIME_PLACEHOLDER;
+
+            if (!string.IsNullOrEmpty(input))
+            {
+                previous = input;
+            }
+
+            return View(model: new FormResult(previous, numbersService.CheckPrime(input)));
         }
 
-        public IActionResult Factorial(string input="")
+        public IActionResult Factorial(string input)
         {
-            return View(model:dbContext.RetrieveFactorial(input));
+            string previous = FACT_PLACEHOLDER;
+
+            if (!string.IsNullOrEmpty(input))
+            {
+                previous = input;
+            }
+
+            return View(model: new FormResult(previous, numbersService.CalculateFactorial(input)));
         }
 
         public IActionResult Regex()
+        {
+            
+            return View();
+        }
+        public IActionResult Heaps()
         {
             return View();
         }

@@ -28,5 +28,10 @@ namespace numbers.Controllers
 		{
 			return View();
 		}
+
+        public IActionResult Store()
+		{
+			return View();
+		}
     }
 }
