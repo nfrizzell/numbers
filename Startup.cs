@@ -35,7 +35,7 @@ namespace numbers
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<NumbersService, NumbersOnDemand>();
+            services.AddScoped<NumbersService, NumbersService>();
 
             services.AddRouting(options => options.LowercaseUrls = true);
             
