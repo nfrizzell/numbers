@@ -70,6 +70,7 @@ html
 	background-color: lavender;
 	border: 1px solid mediumslateblue;
 	border-radius: 5px;
+	max-height: 395px;
 }
 
 #menu-button
@@ -149,8 +150,8 @@ html
 .form-block
 {
 	margin-top: 10px;
-	max-width: 400px;
-	padding:5px;
+	max-width: 360px;
+	padding:10px;
 	border: 1px solid black;
 	border-radius: 3px;
 	display: flex;
@@ -178,7 +179,7 @@ label
 
 .small-number-input
 {
-	width: 250px;
+	width: 220px;
 }
 
 .packed-check-input

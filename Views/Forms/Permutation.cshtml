@@ -1,19 +1,29 @@
 <div class="content grid-item">
-    <h3 style="margin:0;"><u>Permutations</u></h3>
-    <div class="form-block" style="background-color:rgb(210 255 210); border-color:limegreen;">
-        <b>List all permutations of <i>n</i> items</b>
-        <form class="table-form" action="/util/permutation" method="get">
-            <div style="display: table-row;">
-                <label for = "number">Enter integer: </label>
-                <input id = "number-field" class="small-number-input" name="input" placeholder="@Model.input">
-            </div>
-            <div style="display: table-row;">
-                <label style="vertical-align:text-top">Result:</label>
-                <textarea style="width: 258px; height: 208px; resize:none" data-role="none" readonly="readonly">@Html.Raw(Model.result)</textarea>
-            </div>
-            <div>
-                <input type="submit" value="Calculate"/>
-            </div>
-        </form>
+    <div class="multiple-forms">
+        <h3 style="margin:0;"><u>Permutations</u></h3>
+        <div class="form-block" style="background-color:rgb(210 255 210); border-color:limegreen;">
+            <b>List all permutations of <i>n</i> items</b>
+            <form class="table-form" action="/util/permutation" method="get">
+                <div style="display: table-row;">
+                    <label for = "number">Enter integer: </label>
+                    <input id = "number-field" class="small-number-input" name="input" placeholder="@Model.input">
+                </div>
+                <div style="display: table-row;">
+                    <label style="vertical-align:text-top">Result:</label>
+                    <textarea style="width: 228px; height: 208px; resize:none" data-role="none" readonly="readonly">@Html.Raw(Model.result)</textarea>
+                </div>
+                <div>
+                    <input type="submit" value="Calculate"/>
+                </div>
+            </form>
+        </div>
+        <div class="form-block" style="background-color:rgb(210 255 210); border-color:limegreen;">
+            <b style="margin-bottom: 0px;">Why aren't larger inputs allowed?</b>
+            <p style="margin-top: 0px; margin-bottom:5px;">
+                As the number of potential items in a set grows, so does the number of possible permutations
+                of the set. In fact, the total number of permutations of a set of size <i>n</i> is <i>n!</i>.
+                To see why this matters, check out the <a href="~/util/factorial">factorial calculator.</a>
+            </p>
+        </div>
     </div>
 </div>
