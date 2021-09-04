@@ -70,7 +70,7 @@ html
 	background-color: lavender;
 	border: 1px solid mediumslateblue;
 	border-radius: 5px;
-	max-height: 395px;
+	max-height: 430px;
 }
 
 #menu-button
@@ -113,6 +113,10 @@ html
 {
 	width:999px;
 	padding:5px;
+}
+
+.sidebar-list
+{
 }
 
 .content
