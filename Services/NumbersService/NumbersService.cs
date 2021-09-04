@@ -3,6 +3,8 @@ using System.Numerics;
 
 using Microsoft.Extensions.Configuration;
 
+using Microsoft.AspNetCore.Hosting;
+
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -16,12 +18,14 @@ namespace numbers
 		private NumbersInputValidator validator;
 		private FactorialHandler factorialHandler;
 		private PrimeHandler primeHandler;
+		private PermutationHandler permutationHandler;
 
-		public NumbersService(IConfiguration configuration)
+		public NumbersService(IConfiguration configuration, IWebHostEnvironment env)
 		{
 			this.validator = new NumbersInputValidator();
 			this.factorialHandler = new RuntimeFactorialHandler();
 			this.primeHandler = new RuntimePrimeHandler();
+			this.permutationHandler = new PermutationHandler(env);
 		}
 
 		public string CalculateFactorial(string strInput) 
@@ -68,7 +72,18 @@ namespace numbers
 
 		public string ListPermutations(string strInput)
 		{
-			return ":)";
+			if (String.IsNullOrEmpty(strInput))
+			{
+				return "";
+			}
+
+			if (!validator.ValidateNumberInput(strInput, permutationHandler.maxInput))
+			{
+				return PermutationHandler.ERROR;
+			}
+
+			int input = (int)validator.ConvertStringToInt(strInput);
+			return permutationHandler.ListPermutations(input);
 		}
 	}
 }

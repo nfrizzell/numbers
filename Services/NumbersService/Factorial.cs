@@ -10,7 +10,7 @@ namespace numbers
 	public abstract class FactorialHandler
 	{
 		public const string ERROR = "Too large or invalid input";
-		public UInt64 maxInput; 
+		public readonly UInt64 maxInput = 0x10000;
 
 		public abstract BigInteger CalculateFactorial(UInt64 input);
 	}
@@ -19,7 +19,6 @@ namespace numbers
 	{
 		public RuntimeFactorialHandler()
 		{
-			this.maxInput = 0x10000;
 		}
 
 		public override BigInteger CalculateFactorial(UInt64 input)
@@ -41,7 +40,6 @@ namespace numbers
 		DBFactorialHandler(IConfiguration configuration)
 		{
 			this.dbConnString = configuration["DBConnectionString"];
-			this.maxInput = 0x10000;
 		}
 
 		public override BigInteger CalculateFactorial(UInt64 input)

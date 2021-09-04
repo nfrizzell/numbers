@@ -14,7 +14,7 @@ namespace numbers
 		public const string PRIME = "Prime";
 		public const string COMPOSITE = "Composite (not prime)";
 
-		public UInt64 maxInput; 
+		public readonly UInt64 maxInput = 792606555396977;
 
 		public abstract bool CheckPrime(UInt64 input);	
 	}
@@ -23,7 +23,6 @@ namespace numbers
 	{
 		public RuntimePrimeHandler()
 		{
-			this.maxInput = 792606555396977;
 		}
 
 		public override bool CheckPrime(UInt64 input)
