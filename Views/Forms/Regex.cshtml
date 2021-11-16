@@ -4,31 +4,39 @@
         <span>Under construction!!!</span>
         <div class="form-block" style="background-color: lemonchiffon; border-color: orange;">
             <b>Translate a Regex expression to English</b>
-            <form class="table-form" action="/util/regex">
+            <form class="table-form">
                 <div style="display: table-row;">
                     <label for = "regex-input">Expression: </label>
                     <input id="regex-input" class="small-number-input" name="input" placeholder="Enter expression here">
                 </div>
                 <div>
-                    <input type="submit" value="Translate"/>
+                    <input type="button" onclick="Translate()" value="Translate"/>
                 </div>
             </form>
         </div>
         <div class="form-block" style="background-color: lemonchiffon; border-color: orange;">
-            <b>Options</b>
+            <b>Syntax</b>
             <form>
                 <div style="display: table-row;">
-                    <label for="extended-check">Extended:</label>
-                    <input class="packed-check-input" id="extended-radio" type="checkbox">
-                    <label for="xtended-check">Perl:</label>
-                    <input class="packed-check-input" id="xtended-radio" type="checkbox">
+                    <label for="eposix">POSIX ext:</label>
+                    <input class="packed-check-input" id="eposix" name="regex-syntax" type="radio" checked="checked">
+                    <label for="posix">POSIX:</label>
+                    <input class="packed-check-input" id="posix" name="regex-syntax" type="radio">
+                    <label for="pcre">PCRE:</label>
+                    <input class="packed-check-input" id="pcre" name="regex-syntax" type="radio">
                 </div>
             </form>
         </div>
         <div class="form-block" style="background-color: lemonchiffon; border-color: orange;">
             <b>Result</b>
-            <textarea style="height: 250px; resize:none" data-role="none" readonly="readonly"></textarea>
+            <!--
+            <textarea id="translated-result" style="height: 250px; resize:none" data-role="none" readonly="readonly"></textarea>
+            -->
+            <div id="displaybox">
+
+            </div>
         </div>
     </div>
+    <script src="~/js/displaybox.js"></script>
     <script src="~/js/regex.js"></script>
 </div>

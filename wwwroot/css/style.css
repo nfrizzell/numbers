@@ -70,7 +70,7 @@ html
 	background-color: lavender;
 	border: 1px solid mediumslateblue;
 	border-radius: 5px;
-	max-height: 430px;
+	max-height: 440px;
 }
 
 #menu-button
@@ -189,4 +189,19 @@ label
 .packed-check-input
 {
 	margin-right: 25px;
+}
+
+#displaybox
+{
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+}
+
+.display-box-row
+{
+	border: 1px solid lightgrey;
+	margin-bottom: -1px;
+	padding: 3px;
+	font-size: 16px;
 }
