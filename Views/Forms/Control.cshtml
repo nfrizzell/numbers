@@ -1,0 +1,22 @@
+<div class="content grid-item">
+    <div class="multiple-forms">
+        <h3 style="margin:0;"><u>Control Characters</u></h3>
+        <div class="form-block" style="background-color:rgb(210 255 210); border-color:limegreen;">
+            <b>Convert control characters (newline, tab, etc.) to readable representation ('\n', '\t', etc.)</b>
+			<div class="table-form">			
+				<div style="display: table-row;">
+					<label for = "inputstr">Enter string: </label>
+					<textarea id="inputstr" style="width: 228px; height: 150px; resize:none" data-role="none" placeholder="Enter string here..."></textarea>
+				</div>
+				<div style="display: table-row;">
+					<label style="vertical-align:text-top">Result:</label>
+					<textarea id="outputstr" style="width: 228px; height: 100px; resize:none" data-role="none" readonly="readonly"></textarea>
+				</div>
+				<div>
+					<input type="button" onclick="Convert()" value="Convert"/>
+				</div>
+			</div>
+        </div>
+    </div>
+    <script src="~/js/stringtools.js"></script>
+</div>

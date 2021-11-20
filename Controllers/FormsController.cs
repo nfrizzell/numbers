@@ -6,9 +6,11 @@ namespace numbers.Controllers
     public class FormsController : Controller
     {
         private readonly NumbersService numbersService;
+
         private const string FACT_PLACEHOLDER = "(n <= 10000)";
         private const string PRIME_PLACEHOLDER = "(e.g. 2147483647)";
         private const string PERM_PLACEHOLDER = "(n <= 8)";
+        private const string STRING_PLACEHOLDER = "Enter string here";
 
         public FormsController(NumbersService numbersService)
         {
@@ -41,9 +43,9 @@ namespace numbers.Controllers
 
         public IActionResult Regex()
         {
-            
             return View();
         }
+
         public IActionResult Permutation(string input)
         {
             string previous = PERM_PLACEHOLDER;
@@ -54,6 +56,11 @@ namespace numbers.Controllers
             }
 
             return View(model: new FormResult(previous, numbersService.ListPermutations(input)));
+        }
+
+        public IActionResult Control()
+        {
+            return View();
         }
     }
 }
