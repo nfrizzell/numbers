@@ -19,10 +19,6 @@ namespace numbers.Controllers
 		{
 			return View();
 		}
-        public IActionResult DiffEQ()
-		{
-			return View();
-		}
 
 		public IActionResult Links()
 		{

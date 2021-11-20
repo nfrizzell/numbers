@@ -27,7 +27,6 @@ namespace numbers
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
         }
 
         public IConfiguration Configuration { get; }
@@ -36,6 +35,7 @@ namespace numbers
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<NumbersService, NumbersService>();
+            services.AddScoped<ProblemService, ProblemService>();
 
             services.AddRouting(options => options.LowercaseUrls = true);
             
@@ -71,16 +71,21 @@ namespace numbers
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Static}/{action=Index}");
-
+                
                 endpoints.MapControllerRoute(
-                    name: "test",
+                    name: "static",
+                    pattern: "{action}",
+                    defaults: new {controller = "Static"});
+                
+                endpoints.MapControllerRoute(
+                    name: "forms",
                     pattern: "util/{action}",
                     defaults: new {controller = "Forms"});
 
                 endpoints.MapControllerRoute(
-                    name: "test2",
-                    pattern: "{action}",
-                    defaults: new {controller = "Static"});
+                    name: "kattis",
+                    pattern: "kattis/{action=Index}/{id}",
+                    defaults: new {controller = "Kattis"});
             });
         }
     }
