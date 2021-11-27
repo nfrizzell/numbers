@@ -19,10 +19,14 @@ namespace numbers
 			this.dbConnString = configuration["DBConnectionString"];
 		}
 
-		public ulong Increment(ulong increment, string ip)
+		public ulong Increment(ulong increment, string ipaddr)
 		{
+			DateTime dt = DateTime.Now;
+			long unixTime = ((DateTimeOffset)dt).ToUnixTimeSeconds();
+
 			string retrieve = "SELECT total FROM count WHERE id='count';";
 			string update = "UPDATE count SET total=@integer WHERE id='count';";
+			string timestamp = "INSERT INTO ratelimit VALUES(@string, false, @number) ON DUPLICATE KEY UPDATE last_request=@number;";
 			ulong total = 0;
 
 			using (MySqlConnection dbConnection = new MySqlConnection(dbConnString))
@@ -31,6 +35,7 @@ namespace numbers
 
 				MySqlCommand retrieveCommand = new MySqlCommand(retrieve, dbConnection);
 				MySqlCommand updateCommand = new MySqlCommand(update, dbConnection);
+				MySqlCommand timestampCommand = new MySqlCommand(timestamp, dbConnection);
 
 				using (MySqlDataReader reader = retrieveCommand.ExecuteReader())
 				{
@@ -43,6 +48,10 @@ namespace numbers
 
 				updateCommand.Parameters.AddWithValue("@integer", total + increment);
 				updateCommand.ExecuteNonQuery();
+
+				timestampCommand.Parameters.AddWithValue("@string", ipaddr);
+				timestampCommand.Parameters.AddWithValue("@number", unixTime);
+				timestampCommand.ExecuteNonQuery();
 			}
 
 			return total + increment;
@@ -76,6 +85,9 @@ namespace numbers
 				}
 			}
 
+			Console.WriteLine(unixTime);
+			Console.WriteLine(lastRequestTime);
+			Console.WriteLine(spam);
 			return (spam || unixTime - lastRequestTime < 4);
 		}
 
@@ -84,7 +96,7 @@ namespace numbers
 			DateTime dt = DateTime.Now;
 			long unixTime = ((DateTimeOffset)dt).ToUnixTimeSeconds();
 
-			string blacklist = "INSERT INTO ratelimit VALUES(@string, true, @number);";
+			string blacklist = "INSERT INTO ratelimit VALUES(@string, true, @number) ON DUPLICATE KEY UPDATE blacklisted=true, last_request=@number;";
 
 			using (MySqlConnection dbConnection = new MySqlConnection(dbConnString))
 			{
