@@ -29,16 +29,25 @@ namespace numbers
 		{
 			ProblemPost post = new ProblemPost();
 
-			int _;
-			if (id.Length > 3 || !System.Int32.TryParse(id, out _))
+			if (id.Length > 3)
 			{
 				return post;
 			}
 
-			//string json = JsonSerializer.Serialize(post);
-			//Console.WriteLine(json);
+			foreach (char c in id)	
+			{
+				if (c < '0' || c > '9')
+				{
+					return post;
+				}
+			}
 
 			string path = this.env.ContentRootPath + "/Data/article/kattis/" + id + ".json";
+			if (!File.Exists(path))
+			{
+				return post;
+			}
+
 			string json = File.ReadAllText(path);
 			post = JsonSerializer.Deserialize<ProblemPost>(json);
 

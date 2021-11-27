@@ -1,6 +1,7 @@
 {
 	"title":"Prime Sieve",
 	"problem":"https://open.kattis.com/problems/primesieve",
-	"solution":"A",
-	"code":"B"
+	"solution":"The canonical solution to this problem and the one used here is the Sieve of Eratosthenes.",
+	"remarks":"O(n log log n) time complexity, O(n) memory complexity",
+	"code":"#include <iostream>\n#include <vector>\n\nint main()\n{\n    int n, q;\n    std::cin >> n >> q;\n    \n    // Sieve of Eratosthenes\n    std::vector<bool> composite = std::vector<bool>(n + 1);\n    unsigned int p = 2;\n    bool finished = false;\n    while (!finished)\n    {\n        finished = true;\n        for (int i = 2; (i * p) <= n; i++)\n        {\n            composite[i*p] = true;\n        }\n        \n        for (int i = p + 1; i <= n; i++)\n        {\n            if (!composite.at(i))\n            {\n                p = i;\n                finished = false;\n                break;\n            }\n        }\n    }\n\n    composite[0] = true;\n    composite[1] = true;\n    \n    int k = 0;\n    for (int i = 0; i < composite.size(); i++)\n    {\n        if (!composite.at(i))\n        {\n            k++;\n        }\n    }\n\n    std::cout << k << '\\n';\n\n    for (unsigned int i = 0; i < q; i++)\n    {\n        unsigned int x = 0;\n        std::cin >> x;\n\n        if (composite.at(x))\n        {\n            std::cout << 0 << '\\n';\n        }        \n        else\n        {\n            std::cout << 1 << '\\n';\n        }\n    }\n}\n"
 }

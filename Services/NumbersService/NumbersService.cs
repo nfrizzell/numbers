@@ -19,6 +19,7 @@ namespace numbers
 		private FactorialHandler factorialHandler;
 		private PrimeHandler primeHandler;
 		private PermutationHandler permutationHandler;
+		private CountHandler countHandler;
 
 		public NumbersService(IConfiguration configuration, IWebHostEnvironment env)
 		{
@@ -26,6 +27,7 @@ namespace numbers
 			this.factorialHandler = new RuntimeFactorialHandler();
 			this.primeHandler = new RuntimePrimeHandler();
 			this.permutationHandler = new PermutationHandler(env);
+			this.countHandler = new CountHandler(configuration);
 		}
 
 		public string CalculateFactorial(string strInput) 
@@ -84,6 +86,22 @@ namespace numbers
 
 			int input = (int)validator.ConvertStringToInt(strInput);
 			return permutationHandler.ListPermutations(input);
+		}
+
+		public ulong Count(ulong increment, string ipaddr)
+		{
+			const int limit = 100;
+			if (increment > limit)
+			{
+				countHandler.Blacklist(ipaddr);
+			}
+
+			if (!countHandler.CheckSpam(ipaddr))
+			{
+				return countHandler.Increment(increment, ipaddr);
+			}
+
+			return 0;
 		}
 	}
 }

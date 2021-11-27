@@ -11,8 +11,6 @@ namespace numbers
 
 		public bool ValidateNumberInput(string input, UInt64 max)
 		{
-			
-
 			// Check for non-digit characters
 			foreach (char c in input)	
 			{

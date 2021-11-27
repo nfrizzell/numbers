@@ -2,7 +2,15 @@
 
 <div class="content grid-item">
     <h3 style="margin:0; "><u>@Model.title</u></h3>
-    <p>@Model.problem</p>
+    <br>
+    <h4 style="margin:0; ">Problem:</h3>
+    <p><a href=@Model.problem>@Model.problem</a></p>
+    <h4 style="margin:0; ">Solution:</h3>
     <p>@Model.solution</p>
-    <p>@Model.code</p>
+    <h4 style="margin:0; ">Remarks:</h3>
+    <p>@Model.remarks</p>
+    <h4 style="margin:0; ">Code:</h3>
+    <div style="background-color: ghostwhite; border-color: gainsboro;" class="code-block">
+        <code style="white-space: pre">@Model.code</code>
+    </div>
 </div>

@@ -86,6 +86,8 @@ namespace numbers
                     name: "kattis",
                     pattern: "kattis/{action=Index}/{id}",
                     defaults: new {controller = "Kattis"});
+                
+                endpoints.MapControllers();
             });
         }
     }

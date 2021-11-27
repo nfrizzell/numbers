@@ -4,6 +4,7 @@ namespace numbers.Models
 	{
 		public string title {get; set;}
 		public string problem {get; set;}
+		public string remarks {get; set;}
 		public string solution {get; set;}
 		public string code {get; set;}
 
@@ -11,6 +12,7 @@ namespace numbers.Models
 		{
 			this.title = "Page not found";
 			this.problem = "";
+			this.remarks = "";
 			this.solution = "";
 			this.code = "";
 		}

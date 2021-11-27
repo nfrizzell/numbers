@@ -70,7 +70,7 @@ html
 	background-color: lavender;
 	border: 1px solid mediumslateblue;
 	border-radius: 5px;
-	max-height: 440px;
+	max-height: 505px;
 }
 
 #menu-button
@@ -162,6 +162,20 @@ html
 	flex-direction: column;
 	row-gap: 10px;
 	column-gap: 10px;
+}
+
+.code-block
+{
+	margin-top: 10px;
+	max-width: 420x;
+	padding:10px;
+	border: 1px solid black;
+	border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+	column-gap: 10px;
+	overflow-x: auto;
 }
 
 .table-form
