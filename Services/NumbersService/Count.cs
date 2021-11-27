@@ -85,9 +85,6 @@ namespace numbers
 				}
 			}
 
-			Console.WriteLine(unixTime);
-			Console.WriteLine(lastRequestTime);
-			Console.WriteLine(spam);
 			return (spam || unixTime - lastRequestTime < 4);
 		}
 
