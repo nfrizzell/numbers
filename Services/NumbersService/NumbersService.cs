@@ -90,7 +90,7 @@ namespace numbers
 
 		public ulong Count(ulong increment, string ipaddr)
 		{
-			const int limit = 100;
+			const int limit = 1000;
 			if (increment > limit)
 			{
 				countHandler.Blacklist(ipaddr);
