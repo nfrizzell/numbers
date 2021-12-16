@@ -1,0 +1,9 @@
+[Unit]
+Description=Start backend on reboot
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "dotnet /var/www/publish/numbers.dll"
+
+[Install]
+WantedBy=multi-user.target

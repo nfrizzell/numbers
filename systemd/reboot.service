@@ -1,0 +1,9 @@
+[Unit]
+Description=Reboot and update system
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "echo OFF > /whatever/vga_pwr_gadget/switch"
+
+[Install]
+WantedBy=multi-user.target

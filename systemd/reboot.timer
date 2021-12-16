@@ -1,0 +1,9 @@
+[Unit]
+Description=Reboot every 24hr
+
+[Timer]
+OnUnitActiveSec=86400s
+OnBootSec=86400s
+
+[Install]
+WantedBy=timers.target
