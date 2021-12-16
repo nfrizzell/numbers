@@ -3,7 +3,7 @@ Description=Start backend on reboot
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c "dotnet /var/www/publish/numbers.dll"
+ExecStart=/bin/sh -c "cd /var/www/publish; dotnet /var/www/publish/numbers.dll"
 
 [Install]
 WantedBy=multi-user.target
